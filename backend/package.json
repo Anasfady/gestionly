@@ -1,32 +1,26 @@
 {
   "name": "gestionly-backend",
   "version": "1.0.0",
-  "description": "Backend API for Spanish community of neighbors management",
-  "main": "src/api/server.js",
   "type": "module",
-  "engines": {
-    "node": ">=20.0.0"
-  },
+  "main": "src/api/server.js",
   "scripts": {
     "start": "node src/api/server.js",
-    "dev": "nodemon src/api/server.js",
-    "test": "mocha tests/**/*.test.js --exit"
+    "seed": "node seed.js",
+    "test": "mocha tests/**/*.test.js"
   },
   "dependencies": {
+    "better-sqlite3": "^11.0.0",
     "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "express-openapi-validator": "^5.2.0",
-    "sqlite": "^5.1.1",
-    "sqlite3": "^6.0.1",
-    "swagger-ui-express": "^5.0.0",
-    "uuid": "^14.0.0",
-    "yamljs": "^0.3.0"
+    "express-openapi-validator": "^5.1.5",
+    "pdfkit": "^0.15.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "chai": "^5.3.3",
-    "mocha": "^10.8.2",
-    "nodemon": "^3.1.14",
-    "supertest": "^7.2.2"
+    "chai": "^5.1.1",
+    "mocha": "^10.4.0",
+    "supertest": "^7.0.0"
   }
 }

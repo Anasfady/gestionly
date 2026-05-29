@@ -20,9 +20,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create backend workspace structure (`backend/src/api`, `backend/src/controllers`, `backend/src/services`, `backend/src/models`, `backend/src/config`, `backend/tests`)
-- [ ] T002 [P] Initialize Node.js project in `backend/package.json` with dependencies (`express`, `better-sqlite3`, `express-openapi-validator`, `dotenv`, `pdfkit`, `csv-parser`, `xlsx`)
-- [ ] T003 [P] Configure environment variables in `backend/.env.example` and linting in `backend/.eslintrc.json`
+- [x] T001 Create backend workspace structure (`backend/src/api`, `backend/src/controllers`, `backend/src/services`, `backend/src/models`, `backend/src/config`, `backend/tests`)
+- [x] T002 [P] Initialize Node.js project in `backend/package.json` with dependencies (`express`, `better-sqlite3`, `express-openapi-validator`, `dotenv`, `pdfkit`, `csv-parser`, `xlsx`)
+- [x] T003 [P] Configure environment variables in `backend/.env.example` and linting in `backend/.eslintrc.json`
 
 ---
 
@@ -32,12 +32,12 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Setup `better-sqlite3` database connection and migration handler in `backend/src/config/database.js`
-- [ ] T005 [P] Define initial SQLite schemas (Users, Buildings) in `backend/src/models/schemas.sql`
-- [ ] T006 [P] Implement mock header-based authentication middleware in `backend/src/api/middleware/auth.js`
-- [ ] T007 [P] Configure Express app with `express-openapi-validator` in `backend/src/api/app.js`
-- [ ] T008 [P] Setup modular routing structure in `backend/src/api/routes/`
-- [ ] T009 [P] Create User model for data access in `backend/src/models/User.js`
+- [x] T004 Setup `better-sqlite3` database connection and migration handler in `backend/src/config/database.js`
+- [x] T005 [P] Define initial SQLite schemas (Users, Buildings) in `backend/src/models/schemas.sql`
+- [x] T006 [P] Implement mock header-based authentication middleware in `backend/src/api/middleware/auth.js`
+- [x] T007 [P] Configure Express app with `express-openapi-validator` in `backend/src/api/app.js`
+- [x] T008 [P] Setup modular routing structure in `backend/src/api/routes/`
+- [x] T009 [P] Create User model for data access in `backend/src/models/User.js`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -51,18 +51,19 @@
 
 ### Tests for User Story 1
 
-- [ ] T009 [P] [US1] Contract test for building and apartment endpoints in `backend/tests/contract/test_building_units.js`
-- [ ] T010 [P] [US1] Integration test for building/apartment registration journey in `backend/tests/integration/test_building_setup.js`
+- [x] T010 [P] [US1] Contract test for building and apartment endpoints in `backend/tests/contract/test_building_units.js`
+- [x] T011 [P] [US1] Integration test for building/apartment registration journey in `backend/tests/integration/test_building_setup.js`
 
 ### Implementation for User Story 1
 
-- [ ] T011 [P] [US1] Update `backend/src/models/schemas.sql` with Buildings and Apartments table definitions
-- [ ] T012 [P] [US1] Create Building model in `backend/src/models/Building.js`
-- [ ] T013 [P] [US1] Create Unit/Apartment model in `backend/src/models/Unit.js`
-- [ ] T014 [US1] Implement building controller for GET/PUT in `backend/src/controllers/building.js`
-- [ ] T015 [US1] Implement unit controller for registration and listing in `backend/src/controllers/unit.js`
-- [ ] T016 [US1] Implement bulk unit registration service using `csv-parser`/`xlsx` in `backend/src/services/buildingService.js`
-- [ ] T017 [US1] Register building and apartment routes in `backend/src/api/app.js`
+- [x] T012 [P] [US1] Update `backend/src/models/schemas.sql` with Buildings and Apartments table definitions
+- [x] T013 [P] [US1] Create Building model in `backend/src/models/Building.js`
+- [x] T014 [P] [US1] Create Unit/Apartment model in `backend/src/models/Unit.js`
+- [x] T015 [US1] Implement building controller for GET/PUT in `backend/src/controllers/building.js`
+- [x] T016 [US1] Implement unit controller for registration and listing in `backend/src/controllers/unit.js`
+- [x] T017 [US1] Implement bulk unit registration service using `csv-parser`/`xlsx` in `backend/src/services/buildingService.js`
+- [x] T018 [US1] Register building and apartment routes in `backend/src/api/app.js`
+
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
