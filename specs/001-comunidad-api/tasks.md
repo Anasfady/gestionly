@@ -143,10 +143,10 @@
 
 **Purpose**: Final verification and documentation
 
-- [ ] T043 [P] Final code cleanup and refactoring in `backend/src/`
-- [ ] T044 [P] Update `backend/README.md` with final API documentation and setup instructions
-- [ ] T045 Run full test suite (`npm test --workspace=backend`) to ensure no regressions
-- [ ] T046 Validate quickstart instructions in `specs/001-comunidad-api/quickstart.md`
+- [x] T043 [P] Final code cleanup and refactoring in `backend/src/`
+- [x] T044 [P] Update `backend/README.md` with final API documentation and setup instructions
+- [x] T045 Run full test suite (`npm test --workspace=backend`) to ensure no regressions
+- [x] T046 Validate quickstart instructions in `specs/001-comunidad-api/quickstart.md`
 
 ---
 
