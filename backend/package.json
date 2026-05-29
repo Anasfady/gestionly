@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/api/server.js",
     "seed": "node seed.js",
-    "test": "mocha tests/**/*.test.js"
+    "test": "NODE_ENV=test mocha tests/**/*.test.js"
   },
   "dependencies": {
     "better-sqlite3": "^11.0.0",

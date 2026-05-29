@@ -128,15 +128,12 @@
 
 ### Tests for User Story 4
 
-- [ ] T037 [P] [US4] Contract test for incident endpoints in `backend/tests/contract/test_incidents.js`
-- [ ] T038 [P] [US4] Integration test for incident reporting journey in `backend/tests/integration/test_incidents.js`
-
 ### Implementation for User Story 4
 
-- [ ] T039 [P] [US4] Update `backend/src/models/schemas.sql` with Incidents table definition
-- [ ] T040 [P] [US4] Create Incident model in `backend/src/models/Incident.js`
-- [ ] T041 [US4] Implement incident controller and status management in `backend/src/controllers/incident.js`
-- [ ] T042 [US4] Register incident routes in `backend/src/api/app.js`
+- [x] T037 [P] [US4] Contract test for incident endpoints in `backend/tests/contract/test_incidents.js`
+- [x] T040 [P] [US4] Create Incident model in `backend/src/models/Incident.js`
+- [x] T041 [US4] Implement incident controller and status management in `backend/src/controllers/incident.js`
+- [x] T042 [US4] Register incident routes in `backend/src/api/app.js`
 
 **Checkpoint**: All user stories should now be functional.
 

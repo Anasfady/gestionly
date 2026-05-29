@@ -10,7 +10,7 @@ let db;
 export function getDb() {
   if (db) return db;
 
-  const dbFile = process.env.DATABASE_FILE || 'database.sqlite';
+  const dbFile = process.env.NODE_ENV === 'test' ? 'test_database.sqlite' : (process.env.DATABASE_FILE || 'database.sqlite');
   
   db = new Database(dbFile);
   db.pragma('foreign_keys = ON');
