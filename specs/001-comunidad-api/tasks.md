@@ -82,14 +82,14 @@
 
 ### Implementation for User Story 2
 
-- [ ] T020 [P] [US2] Update `backend/src/models/schemas.sql` with Budgets and Invoices table definitions
-- [ ] T021 [P] [US2] Create Budget model in `backend/src/models/Budget.js`
-- [ ] T022 [P] [US2] Create Invoice model in `backend/src/models/Invoice.js`
-- [ ] T023 [US2] Implement dynamic fee calculation service in `backend/src/services/feeService.js`
-- [ ] T024 [US2] Implement budget controller in `backend/src/controllers/budget.js`
-- [ ] T025 [US2] Implement PDF invoice generation using `pdfkit` in `backend/src/services/invoiceService.js`
-- [ ] T026 [US2] Implement payment webhook handler in `backend/src/controllers/invoice.js`
-- [ ] T027 [US2] Register budget, fee, and webhook routes in `backend/src/api/app.js`
+- [x] T020 [P] [US2] Update `backend/src/models/schemas.sql` with Budgets and Invoices table definitions
+- [x] T021 [P] [US2] Create Budget model in `backend/src/models/Budget.js`
+- [x] T022 [P] [US2] Create Invoice model in `backend/src/models/Invoice.js`
+- [x] T023 [US2] Implement dynamic fee calculation service in `backend/src/services/feeService.js`
+- [x] T024 [US2] Implement budget controller in `backend/src/controllers/budget.js`
+- [x] T025 [US2] Implement PDF invoice generation using `pdfkit` in `backend/src/services/invoiceService.js`
+- [x] T026 [US2] Implement payment webhook handler in `backend/src/controllers/invoice.js`
+- [x] T027 [US2] Register budget, fee, and webhook routes in `backend/src/api/app.js`
 
 **Checkpoint**: At this point, User Story 2 should be fully functional and testable independently.
 
@@ -103,18 +103,18 @@
 
 ### Tests for User Story 3
 
-- [ ] T028 [P] [US3] Contract test for poll and vote endpoints in `backend/tests/contract/test_polls_voting.js`
-- [ ] T029 [P] [US3] Integration test for weighted voting journey in `backend/tests/integration/test_voting.js`
+- [x] T028 [P] [US3] Contract test for poll and vote endpoints in `backend/tests/contract/test_polls_voting.js`
+- [x] T029 [P] [US3] Integration test for weighted voting journey in `backend/tests/integration/test_voting.js`
 
 ### Implementation for User Story 3
 
-- [ ] T030 [P] [US3] Update `backend/src/models/schemas.sql` with Polls and Votes table definitions
-- [ ] T031 [P] [US3] Create Poll model in `backend/src/models/Poll.js`
-- [ ] T032 [P] [US3] Create Vote model in `backend/src/models/Vote.js`
-- [ ] T033 [US3] Implement weighted voting and result aggregation service in `backend/src/services/voteService.js`
-- [ ] T034 [US3] Implement poll controller in `backend/src/controllers/poll.js`
-- [ ] T035 [US3] Implement vote delegation logic in `backend/src/services/voteService.js`
-- [ ] T036 [US3] Register poll and voting routes in `backend/src/api/app.js`
+- [x] T030 [P] [US3] Update `backend/src/models/schemas.sql` with Polls and Votes table definitions
+- [x] T031 [P] [US3] Create Poll model in `backend/src/models/Poll.js`
+- [x] T032 [P] [US3] Create Vote model in `backend/src/models/Vote.js`
+- [x] T033 [US3] Implement weighted voting and result aggregation service in `backend/src/services/voteService.js`
+- [x] T034 [US3] Implement poll controller in `backend/src/controllers/poll.js`
+- [x] T035 [US3] Implement vote delegation logic in `backend/src/services/voteService.js`
+- [x] T036 [US3] Register poll and voting routes in `backend/src/api/app.js`
 
 **Checkpoint**: All P1 user stories should now be independently functional.
 

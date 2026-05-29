@@ -41,6 +41,20 @@ CREATE TABLE IF NOT EXISTS budgets (
     UNIQUE(building_id, year)
 );
 
+-- Invoices Table
+CREATE TABLE IF NOT EXISTS invoices (
+    id TEXT PRIMARY KEY,
+    apartment_id TEXT NOT NULL,
+    budget_id TEXT,
+    type TEXT NOT NULL CHECK (type IN ('Recurring', 'Ad-hoc')),
+    amount REAL NOT NULL,
+    status TEXT NOT NULL DEFAULT 'Pending' CHECK (status IN ('Pending', 'Paid', 'Delinquent')),
+    created_at TEXT NOT NULL,
+    paid_at TEXT,
+    FOREIGN KEY (apartment_id) REFERENCES apartments(id),
+    FOREIGN KEY (budget_id) REFERENCES budgets(id)
+);
+
 -- Polls Table
 CREATE TABLE IF NOT EXISTS polls (
     id TEXT PRIMARY KEY,
@@ -51,6 +65,18 @@ CREATE TABLE IF NOT EXISTS polls (
     end_date TEXT NOT NULL, -- ISO-8601
     is_secret BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (building_id) REFERENCES buildings(id)
+);
+
+-- Delegations Table
+CREATE TABLE IF NOT EXISTS delegations (
+    id TEXT PRIMARY KEY,
+    poll_id TEXT NOT NULL,
+    delegator_id TEXT NOT NULL,
+    delegatee_id TEXT NOT NULL,
+    FOREIGN KEY (poll_id) REFERENCES polls(id),
+    FOREIGN KEY (delegator_id) REFERENCES users(id),
+    FOREIGN KEY (delegatee_id) REFERENCES users(id),
+    UNIQUE(poll_id, delegator_id)
 );
 
 -- Votes Table
