@@ -1,0 +1,672 @@
+openapi: 3.0.0
+info:
+  description: Updated API contract for Gestionly including phone numbers, emails,
+    and the Spanish 'Referencia Catastral'.
+  version: 1.2.0
+  title: Gestionly API
+tags:
+  - name: users
+    description: User management and roles (President, Owner, Tenant)
+  - name: building
+    description: Building management
+  - name: apartments
+    description: Units, ownership shares, and tenant assignments
+  - name: budgets
+    description: Annual budgets and fee calculations
+  - name: polls
+    description: Community voting and results
+  - name: incidents
+    description: Reporting damages and issues
+paths:
+  /api/users/me:
+    get:
+      tags:
+        - users
+      summary: Get current authenticated user profile and view permissions
+      description: Returns the logged-in user's data, their role, and the structural
+        entities they are permitted to view. The frontend uses this payload to
+        determine whether to render the President, Owner, or Tenant dashboard
+        layout.
+      operationId: getMyProfile
+      responses:
+        "200":
+          description: Successful profile retrieval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserSessionResponse"
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+  /api/users:
+    get:
+      tags:
+        - users
+      summary: Retrieve a list of users by role
+      description: Fetch registered users. The role query parameter is strictly
+        required to filter the user directory. URLs remain clean and free of
+        sensitive personal data.
+      operationId: getUsers
+      parameters:
+        - in: query
+          name: role
+          description: The specific user role you want to retrieve.
+          required: true
+          schema:
+            type: string
+            enum:
+              - President
+              - Owner
+              - Tenant
+      responses:
+        "200":
+          description: Successful retrieval of users for the specified role
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        "400":
+          description: Bad Request - Missing or invalid role parameter
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+    post:
+      tags:
+        - users
+      summary: Create/Register a new user profile
+      description: Allows the President to manually pre-register a building owner, or
+        allows a new user to sign up. Contact details are securely sent in the
+        request body data model.
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+        description: User registration payload containing contact parameters inside the
+          secure JSON body.
+        required: true
+      responses:
+        "201":
+          description: User profile successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Bad Request - Missing mandatory registration fields
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+  /api/building:
+    get:
+      tags:
+        - building
+      summary: Retrieve the community building details
+      description: Fetches the details of the single building managed by this
+        subscription instance.
+      operationId: getBuilding
+      responses:
+        "200":
+          description: Successful retrieval of building data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Building"
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+    put:
+      tags:
+        - building
+      summary: Update building details
+      description: Allows the President to update the community name or address.
+      operationId: updateBuilding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BuildingInput"
+        required: true
+      responses:
+        "200":
+          description: Building successfully updated
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+  /api/apartments:
+    post:
+      tags:
+        - apartments
+      summary: Add an apartment to the building
+      description: Registers a new apartment with its ownership coefficient and
+        official Referencia Catastral. (President Action)
+      operationId: addApartment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApartmentInput"
+        description: Apartment object data payload
+        required: true
+      responses:
+        "201":
+          description: Successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Apartment"
+        "400":
+          description: Bad Request - Validation error (e.g., total coefficients exceed
+            100% or duplicate unit number)
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+    get:
+      tags:
+        - apartments
+      summary: List all apartments in the building
+      description: Retrieves the complete registry of apartments for the single
+        building instance.
+      operationId: getApartments
+      responses:
+        "200":
+          description: Successful retrieval of the apartment list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Apartment"
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+  "/api/apartments/{apartment_id}/tenants":
+    post:
+      tags:
+        - apartments
+      summary: Assign or invite a tenant to an apartment
+      description: Allows an Owner to link an existing tenant via user ID or invite a
+        new tenant using their email/phone.
+      operationId: assignTenant
+      parameters:
+        - in: path
+          name: apartment_id
+          description: The unique system ID of the apartment
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TenantAssignmentInput"
+        description: Tenant contact details for assignment or system invitation
+        required: true
+      responses:
+        "200":
+          description: Successful assignment of tenant, returns updated apartment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Apartment"
+        "201":
+          description: Tenant successfully assigned or invitation sent
+        "400":
+          description: Bad Request - Missing required invitation fields
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+        "404":
+          description: Not Found - The specified apartment_id does not exist
+  /api/budgets:
+    post:
+      tags:
+        - budgets
+      summary: Set the annual budget
+      description: Sets the total annual budget for the single building instance to
+        calculate apartment fees. (President Action)
+      operationId: setBudget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Budget"
+        description: Budget object containing the target year and total annual amount.
+        required: true
+      responses:
+        "201":
+          description: Budget successfully created
+        "400":
+          description: Bad Request - Validation error (e.g., negative budget amount or
+            invalid year format)
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+  /api/fees:
+    get:
+      tags:
+        - budgets
+      summary: Calculate and retrieve fees
+      description: Gets the dynamically calculated fees for all apartments based on
+        the budget and their ownership shares.
+      operationId: getFees
+      parameters:
+        - in: query
+          name: frequency
+          description: Frequency breakdown of the calculated fee (monthly, quarterly,
+            yearly).
+          required: false
+          schema:
+            type: string
+            enum:
+              - monthly
+              - quarterly
+              - yearly
+            default: monthly
+      responses:
+        "200":
+          description: Successful calculation of fees across all units
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Fee"
+        "400":
+          description: Bad Request - An active budget for the calculation cycle does not
+            exist yet
+        "401":
+          description: Unauthorized - Valid authentication token required
+        "403":
+          description: Forbidden - Insufficient permissions to access this resource
+  /api/polls:
+    post:
+      tags:
+        - polls
+      summary: Create a community vote
+      description: Initiates a new poll for the single building instance. (President Action)
+      operationId: createPoll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PollInput"
+        description: Poll payload containing the question text and array of answer choices.
+        required: true
+      responses:
+        "201":
+          description: Poll successfully created
+        "400":
+          description: Bad Request - Validation error (e.g., missing question description
+            or empty options array)
+  "/api/polls/{poll_id}/votes":
+    post:
+      tags:
+        - polls
+      summary: Cast a vote
+      description: Submits a ballot for a specific poll. Jose Luis's backend will
+        automatically fetch the user's linked apartment ID to apply their
+        ownership coefficient weight behind the scenes. (Owner Action)
+      operationId: castVote
+      parameters:
+        - in: path
+          name: poll_id
+          description: The unique system ID of the target poll
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VoteInput"
+        description: Voter identity details and their chosen response option.
+        required: true
+      responses:
+        "201":
+          description: Vote successfully cast
+        "400":
+          description: Bad Request - The user has already voted, the selected option is
+            invalid, or the poll is closed
+        "404":
+          description: Not Found - The specified poll_id does not exist
+  "/api/polls/{poll_id}/results":
+    get:
+      tags:
+        - polls
+      summary: Get poll results
+      description: Retrieves the real-time, mathematically weighted results of a
+        specific poll based on community ownership shares.
+      operationId: getPollResults
+      parameters:
+        - in: path
+          name: poll_id
+          description: The unique system ID of the poll
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful retrieval of the calculated results object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PollResult"
+        "404":
+          description: Not Found - The specified poll_id does not exist
+  /api/incidents:
+    post:
+      tags:
+        - incidents
+      summary: Report an incident
+      description: Allows a Tenant or Owner to report a building damage or maintenance
+        issue (incidencia).
+      operationId: reportIncident
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IncidentInput"
+        description: Incident details payload including the title, description, and the
+          ID of the reporter.
+        required: true
+      responses:
+        "201":
+          description: Incident successfully reported
+        "400":
+          description: Bad Request - Validation error (e.g., missing mandatory fields like
+            title or reporter_id)
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - phone_number
+        - role
+      properties:
+        id:
+          type: string
+          example: usr_98765
+        name:
+          type: string
+          example: Anas Fady
+        email:
+          type: string
+          example: anas@example.com
+        phone_number:
+          type: string
+          example: "+34600123456"
+        role:
+          type: string
+          enum:
+            - President
+            - Owner
+            - Tenant
+    UserInput:
+      type: object
+      required:
+        - name
+        - email
+        - phone_number
+        - role
+      properties:
+        name:
+          type: string
+          example: Juan Pérez
+        email:
+          type: string
+          example: juan.perez@example.com
+        phone_number:
+          type: string
+          example: "+34600123456"
+        role:
+          type: string
+          enum:
+            - President
+            - Owner
+            - Tenant
+    UserSessionResponse:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+        associated_apartments:
+          type: array
+          items:
+            type: string
+          description: List of Apartment IDs linked to this user's profile to control view
+            restrictions.
+    BuildingInput:
+      type: object
+      required:
+        - name
+        - address
+      properties:
+        name:
+          type: string
+          example: Residencial Las Rosas
+        address:
+          type: string
+          example: Calle Mayor 12, Madrid
+    Building:
+      type: object
+      properties:
+        id:
+          type: string
+          example: bld_111
+        name:
+          type: string
+        address:
+          type: string
+    ApartmentInput:
+      type: object
+      required:
+        - unit_number
+        - owner_id
+        - share_percentage
+        - referencia_catastral
+      properties:
+        unit_number:
+          type: string
+          example: 3A
+        owner_id:
+          type: string
+          description: User ID of the registered property owner.
+        share_percentage:
+          type: number
+          format: float
+          example: 4.25
+        referencia_catastral:
+          type: string
+          description: Official 20-character property registration ID from the city hall.
+          example: 9834501VK4793S0001XG
+    Apartment:
+      type: object
+      properties:
+        id:
+          type: string
+          example: apt_001
+        unit_number:
+          type: string
+        owner_id:
+          type: string
+        tenant_id:
+          type: string
+          nullable: true
+          description: User ID of the tenant occupant if rented (Nullable).
+        share_percentage:
+          type: number
+          format: float
+        referencia_catastral:
+          type: string
+    TenantAssignmentInput:
+      type: object
+      properties:
+        tenant_id:
+          type: string
+          description: Existing user account ID to link directly.
+        email:
+          type: string
+          description: Target email to route a system invitation link.
+        phone_number:
+          type: string
+          description: Target phone number to route an invitation.
+    IncidentInput:
+      type: object
+      required:
+        - title
+        - description
+        - reporter_id
+      properties:
+        title:
+          type: string
+          example: Elevator Breakdown
+        description:
+          type: string
+          example: The main elevator is stuck on the 2nd floor and making loud sounds.
+        reporter_id:
+          type: string
+    Incident:
+      type: object
+      properties:
+        id:
+          type: string
+          example: inc_555
+        title:
+          type: string
+        description:
+          type: string
+        reporter_id:
+          type: string
+        status:
+          type: string
+          enum:
+            - Pending
+            - In_Progress
+            - Resolved
+        created_at:
+          type: string
+          format: date-time
+    Budget:
+      type: object
+      required:
+        - year
+        - total_annual_amount
+      properties:
+        year:
+          type: integer
+          example: 2026
+        total_annual_amount:
+          type: number
+          format: float
+          example: 12000
+    Fee:
+      type: object
+      properties:
+        apartment_id:
+          type: string
+        unit_number:
+          type: string
+        share_percentage:
+          type: number
+          format: float
+        calculated_fee:
+          type: number
+          format: float
+          example: 42.5
+        frequency:
+          type: string
+          example: monthly
+    PollInput:
+      type: object
+      required:
+        - title
+        - description
+        - options
+      properties:
+        title:
+          type: string
+          example: Lobby Repainting Project
+        description:
+          type: string
+          example: Vote on the preferred interior wall color profile for our entryway.
+        options:
+          type: array
+          items:
+            type: string
+          example:
+            - Classic White
+            - Modern Gray
+            - Abstain
+    Poll:
+      type: object
+      properties:
+        id:
+          type: string
+          example: pol_777
+        title:
+          type: string
+        description:
+          type: string
+        options:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - Open
+            - Closed
+    VoteInput:
+      type: object
+      required:
+        - user_id
+        - apartment_id
+        - selected_option
+      properties:
+        user_id:
+          type: string
+        apartment_id:
+          type: string
+        selected_option:
+          type: string
+          example: Modern Gray
+    PollResult:
+      type: object
+      properties:
+        poll_id:
+          type: string
+        status:
+          type: string
+        total_participation_percentage:
+          type: number
+          format: float
+          example: 85.5
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              option:
+                type: string
+              weighted_percentage:
+                type: number
+                format: float
+                example: 55.25

@@ -141,3 +141,13 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# SQLite
+*.sqlite
+*.sqlite-journal
+*.sqlite-shm
+*.sqlite-wal
+
+# Antigravity CLI
+.antigravitycli/
+

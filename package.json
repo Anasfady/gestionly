@@ -1,0 +1,13 @@
+{
+  "name": "gestionly",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "npm": ">=11.10.0",
+    "node": ">=20.0.0"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
