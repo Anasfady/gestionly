@@ -1,17 +1,22 @@
 import { expect } from 'chai';
 import request from 'supertest';
 import app from '../../src/api/app.js';
-import { getDb, seedDatabase } from '../../src/config/database.js';
+import { getDb, closeDb, seedDatabase } from '../../src/config/database.js';
 import fs from 'fs';
 
 describe('Building & Apartment API Contract Tests', () => {
   before(async () => {
     // Delete and re-initialize
+    const dbFile = process.env.NODE_ENV === 'test' ? 'test_database.sqlite' : 'database.sqlite';
     try {
-      await fs.promises.unlink('./database.sqlite');
+      await fs.promises.unlink(`./${dbFile}`);
     } catch (e) {}
     await getDb();
     await seedDatabase();
+  });
+
+  after(async () => {
+    closeDb();
   });
 
   describe('GET /api/building', () => {

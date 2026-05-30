@@ -24,6 +24,13 @@ export function getDb() {
   return db;
 }
 
+export function closeDb() {
+  if (db) {
+    db.close();
+    db = null;
+  }
+}
+
 export async function seedDatabase() {
   const db = getDb();
 

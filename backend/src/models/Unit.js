@@ -7,23 +7,33 @@ export class Unit {
     // Assuming building_id is bld_111 for MVP
     const building_id = 'bld_111';
     const type = data.type || 'Apartment'; // Add default
+    const exempt_from_fees = data.exempt_from_fees ? 1 : 0;
     
     db.prepare(`
-      INSERT INTO apartments (id, building_id, unit_number, type, owner_id, share_percentage, referencia_catastral)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).run(id, building_id, data.unit_number, type, data.owner_id, data.share_percentage, data.referencia_catastral);
+      INSERT INTO apartments (id, building_id, unit_number, type, owner_id, share_percentage, referencia_catastral, exempt_from_fees)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(id, building_id, data.unit_number, type, data.owner_id, data.share_percentage, data.referencia_catastral, exempt_from_fees);
     
-    return { id, ...data, type };
+    return { id, ...data, type, exempt_from_fees: !!exempt_from_fees };
   }
 
   static findAll() {
     const db = getDb();
-    return db.prepare('SELECT * FROM apartments').all();
+    const rows = db.prepare('SELECT * FROM apartments').all();
+    return rows.map(row => ({
+      ...row,
+      exempt_from_fees: !!row.exempt_from_fees
+    }));
   }
 
   static findById(id) {
     const db = getDb();
-    return db.prepare('SELECT * FROM apartments WHERE id = ?').get(id);
+    const row = db.prepare('SELECT * FROM apartments WHERE id = ?').get(id);
+    if (!row) return null;
+    return {
+      ...row,
+      exempt_from_fees: !!row.exempt_from_fees
+    };
   }
 
   static assignTenant(apartmentId, tenantId) {
