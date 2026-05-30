@@ -78,7 +78,8 @@ web_modules/
 .next
 out
 
-# Nuxt.js build / generate output
+# Nuxt.js buildgit reset --soft HEAD~1
+ / generate output
 .nuxt
 dist
 .output
