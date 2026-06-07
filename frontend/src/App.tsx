@@ -1,43 +1,37 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DashboardLayout from "./layouts/DashboardLayout.tsx";
-import PresidentDashboard from "./pages/PresidentDashboard.tsx";
-import BillingDashboard from "./pages/BillingDashboard.tsx";
+import DashboardLayout from "./layouts/DashboardLayout";
+import PresidentDashboard from "./pages/PresidentDashboard";
+import VotingDashboard from "./pages/VotingDashboard";
+import CreateVote from "./pages/CreateVote";
+import UnitsDashboard from "./pages/UnitsDashboard";
+import BillingDashboard from "./pages/BillingDashboard";
+import OwnerDashboard from "./pages/OwnerDashboard.tsx";
+import OwnerVoting from "./pages/OwnerVoting.tsx";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* The DashboardLayout wraps around all our inner pages */}
         <Route path="/" element={<DashboardLayout />}>
-          {/* The "index" route means this loads when the URL is exactly "/" */}
-          <Route index element={<PresidentDashboard />} />
+          {/* OWNER ZONE: Set as the index (home) route */}
+          <Route index element={<OwnerDashboard />} />
 
-          {/* Placeholders for our future features */}
-          <Route
-            path="units"
-            element={
-              <div className="p-8 font-bold text-slate-800">
-                Unit Management Coming Soon
-              </div>
-            }
-          />
-          <Route
-            path="voting"
-            element={
-              <div className="p-8 font-bold text-slate-800">
-                Voting System Coming Soon
-              </div>
-            }
-          />
-          <Route
-            path="billing"
-            element={
-              <div className="p-8 font-bold text-slate-800">
-                Billing & Invoices Coming Soon
-              </div>
-            }
-          />
+          <Route path="owner">
+            <Route index element={<OwnerDashboard />} />
+            <Route path="voting" element={<OwnerVoting />} />
+          </Route>
+
+          {/* PRESIDENT ZONE: Kept at /president */}
+          <Route path="president">
+            <Route index element={<PresidentDashboard />} />
+            <Route path="units" element={<UnitsDashboard />} />
+            <Route path="billing" element={<BillingDashboard />} />
+            <Route path="voting">
+              <Route index element={<VotingDashboard />} />
+              <Route path="create" element={<CreateVote />} />
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
