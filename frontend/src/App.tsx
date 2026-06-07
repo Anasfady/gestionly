@@ -8,6 +8,8 @@ import UnitsDashboard from "./pages/UnitsDashboard";
 import BillingDashboard from "./pages/BillingDashboard";
 import OwnerDashboard from "./pages/OwnerDashboard.tsx";
 import OwnerVoting from "./pages/OwnerVoting.tsx";
+import OwnerTenants from "./pages/OwnerTenants.tsx";
+import OwnerIncidents from "./pages/OwnerIncidents.tsx";
 
 export default function App() {
   return (
@@ -20,6 +22,15 @@ export default function App() {
           <Route path="owner">
             <Route index element={<OwnerDashboard />} />
             <Route path="voting" element={<OwnerVoting />} />
+          </Route>
+          <Route path="owner">
+            <Route index element={<OwnerDashboard />} />
+            <Route path="voting" element={<OwnerVoting />} />
+
+            {/* New Tenants Route */}
+            <Route path="tenants" element={<OwnerTenants />} />
+            {/* Incidents Route */}
+            <Route path="incidents" element={<OwnerIncidents />} />
           </Route>
 
           {/* PRESIDENT ZONE: Kept at /president */}
