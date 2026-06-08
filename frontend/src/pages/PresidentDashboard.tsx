@@ -1,4 +1,3 @@
-import React from "react";
 import KPIGrid from "../components/Dashboard/KPIGrid";
 import FinancialOverview from "../components/Dashboard/FinancialOverview";
 import TopDebtors from "../components/Dashboard/TopDebtors";

@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function FinancialOverview() {
   const collected = 18420;
   const pending = 4970;
