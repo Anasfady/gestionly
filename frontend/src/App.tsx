@@ -1,11 +1,10 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DashboardLayout from "./layouts/DashboardLayout";
-import PresidentDashboard from "./pages/PresidentDashboard";
-import VotingDashboard from "./pages/VotingDashboard";
-import CreateVote from "./pages/CreateVote";
-import UnitsDashboard from "./pages/UnitsDashboard";
-import BillingDashboard from "./pages/BillingDashboard";
+import DashboardLayout from "./layouts/DashboardLayout.tsx";
+import PresidentDashboard from "./pages/PresidentDashboard.tsx";
+import VotingDashboard from "./pages/VotingDashboard.tsx";
+import CreateVote from "./pages/CreateVote.tsx";
+import UnitsDashboard from "./pages/UnitsDashboard.tsx";
+import BillingDashboard from "./pages/BillingDashboard.tsx";
 import OwnerDashboard from "./pages/OwnerDashboard.tsx";
 import OwnerVoting from "./pages/OwnerVoting.tsx";
 import OwnerTenants from "./pages/OwnerTenants.tsx";

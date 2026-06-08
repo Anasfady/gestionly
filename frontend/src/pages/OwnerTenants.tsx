@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function OwnerTenants() {
   // 1. New state to toggle the form visibility

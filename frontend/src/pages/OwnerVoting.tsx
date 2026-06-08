@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function OwnerVoting() {
   // Simulate an immutable vote state for the UI
