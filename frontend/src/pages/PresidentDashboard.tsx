@@ -17,7 +17,7 @@ export default function PresidentDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {/* Card 1: Total Collected */}
         <div className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-slate-800 rounded-2xl p-5 shadow-sm transition-colors">
-          <div className="flex justify-between items-start mb-3">
+          <div className="flex justify-between items-start mb-2">
             <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Total Collected
             </p>
@@ -35,7 +35,7 @@ export default function PresidentDashboard() {
 
         {/* Card 2: Total Pending */}
         <div className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-slate-800 rounded-2xl p-5 shadow-sm transition-colors">
-          <div className="flex justify-between items-start mb-3">
+          <div className="flex justify-between items-start mb-2">
             <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Total Pending
             </p>
@@ -56,7 +56,7 @@ export default function PresidentDashboard() {
 
         {/* Card 3: Active Owners */}
         <div className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-slate-800 rounded-2xl p-5 shadow-sm transition-colors">
-          <div className="flex justify-between items-start mb-3">
+          <div className="flex justify-between items-start mb-2">
             <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Active Owners
             </p>
@@ -77,7 +77,7 @@ export default function PresidentDashboard() {
 
         {/* Card 4: Units */}
         <div className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-slate-800 rounded-2xl p-5 shadow-sm transition-colors">
-          <div className="flex justify-between items-start mb-3">
+          <div className="flex justify-between items-start mb-2">
             <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Units
             </p>
