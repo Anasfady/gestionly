@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function OwnerTenants() {
   // 1. New state to toggle the form visibility
   const [showForm, setShowForm] = useState(false);
