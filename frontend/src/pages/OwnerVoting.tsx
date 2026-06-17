@@ -25,7 +25,8 @@ export default function OwnerVoting() {
       date: "Oct 12, 2025",
       result: "Approved (82%)",
       myVote: "Yes",
-      statusColor: "text-emerald-600 bg-emerald-50",
+      statusColor:
+        "text-emerald-600 bg-emerald-50 dark:bg-emerald-500/10 dark:text-emerald-400 border-emerald-100 dark:border-emerald-500/20",
     },
     {
       id: "V-101",
@@ -33,7 +34,8 @@ export default function OwnerVoting() {
       date: "Sep 05, 2025",
       result: "Rejected (65% No)",
       myVote: "Delegated",
-      statusColor: "text-rose-600 bg-rose-50",
+      statusColor:
+        "text-rose-600 bg-rose-50 dark:bg-rose-500/10 dark:text-rose-400 border-rose-100 dark:border-rose-500/20",
     },
     {
       id: "V-100",
@@ -41,28 +43,33 @@ export default function OwnerVoting() {
       date: "Aug 20, 2025",
       result: "Approved (95%)",
       myVote: "Yes",
-      statusColor: "text-emerald-600 bg-emerald-50",
+      statusColor:
+        "text-emerald-600 bg-emerald-50 dark:bg-emerald-500/10 dark:text-emerald-400 border-emerald-100 dark:border-emerald-500/20",
     },
   ];
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen font-sans">
+    <div className="p-8 bg-gray-50 dark:bg-[#0B0E14] min-h-screen font-sans transition-colors duration-300">
       {/* Page Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-800">Active vote</h1>
-        <p className="text-slate-500 text-sm">Cast or delegate your vote</p>
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-white transition-colors">
+          Active vote
+        </h1>
+        <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors">
+          Cast or delegate your vote
+        </p>
       </div>
 
       {/* ACTIVE VOTE SECTION */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
         {/* Left Column: Action Card */}
-        <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="lg:col-span-2 bg-white dark:bg-[#161B26] rounded-xl shadow-sm border border-gray-200 dark:border-slate-800 p-6 transition-colors">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <h2 className="text-xl font-bold text-slate-800">
+              <h2 className="text-xl font-bold text-slate-800 dark:text-white transition-colors">
                 Replace lobby flooring
               </h2>
-              <p className="text-sm text-slate-500 mt-1">
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 transition-colors">
                 Derramas · closes in 4 days
               </p>
             </div>
@@ -71,16 +78,16 @@ export default function OwnerVoting() {
             </span>
           </div>
 
-          <p className="text-slate-700 text-sm mb-6">
+          <p className="text-slate-700 dark:text-slate-300 text-sm mb-6 transition-colors">
             Three contractor quotes attached. Estimated cost per coefficient
             point: €38.
           </p>
 
           {/* Attachment */}
-          <div className="flex items-center justify-between p-4 border border-gray-200 rounded-xl mb-6 bg-slate-50">
+          <div className="flex items-center justify-between p-4 border border-gray-200 dark:border-slate-700 rounded-xl mb-6 bg-slate-50 dark:bg-slate-800/50 transition-colors">
             <div className="flex items-center">
               <svg
-                className="w-8 h-8 text-blue-500 mr-3"
+                className="w-8 h-8 text-blue-500 dark:text-blue-400 mr-3 transition-colors"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -93,13 +100,15 @@ export default function OwnerVoting() {
                 ></path>
               </svg>
               <div>
-                <p className="text-sm font-bold text-slate-800">
+                <p className="text-sm font-bold text-slate-800 dark:text-white transition-colors">
                   contractor-quote.pdf
                 </p>
-                <p className="text-xs text-slate-500">2 pages · 480 KB</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 transition-colors">
+                  2 pages · 480 KB
+                </p>
               </div>
             </div>
-            <button className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-gray-50 transition shadow-sm">
+            <button className="px-4 py-2 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 transition shadow-sm">
               Preview
             </button>
           </div>
@@ -129,10 +138,10 @@ export default function OwnerVoting() {
                 </button>
                 <button
                   onClick={() => handleVote("No")}
-                  className="w-full py-3 bg-white border border-gray-200 text-slate-700 rounded-lg font-medium hover:bg-gray-50 transition flex justify-center items-center shadow-sm"
+                  className="w-full py-3 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-slate-800 transition flex justify-center items-center shadow-sm"
                 >
                   <svg
-                    className="w-5 h-5 mr-2 text-slate-400"
+                    className="w-5 h-5 mr-2 text-slate-400 dark:text-slate-500 transition-colors"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -148,8 +157,8 @@ export default function OwnerVoting() {
                 </button>
               </div>
 
-              <div className="bg-gray-50 border border-gray-100 rounded-xl p-4">
-                <label className="flex items-center text-sm font-medium text-slate-700 mb-3">
+              <div className="bg-gray-50 dark:bg-slate-800/30 border border-gray-100 dark:border-slate-800 rounded-xl p-4 transition-colors">
+                <label className="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300 mb-3 transition-colors">
                   <svg
                     className="w-4 h-4 mr-2"
                     fill="none"
@@ -166,7 +175,7 @@ export default function OwnerVoting() {
                   Delegate your vote
                 </label>
                 <div className="flex space-x-3">
-                  <select className="flex-1 border border-gray-200 rounded-lg p-2.5 text-sm outline-none text-slate-600 bg-white shadow-sm">
+                  <select className="flex-1 border border-gray-200 dark:border-slate-700 rounded-lg p-2.5 text-sm outline-none text-slate-600 dark:text-slate-300 bg-white dark:bg-[#0B0E14] shadow-sm transition-colors">
                     <option value="" disabled selected>
                       Choose neighbor
                     </option>
@@ -175,7 +184,7 @@ export default function OwnerVoting() {
                   </select>
                   <button
                     onClick={handleDelegate}
-                    className="px-5 py-2.5 bg-gray-200 text-slate-700 rounded-lg text-sm font-medium hover:bg-gray-300 transition"
+                    className="px-5 py-2.5 bg-gray-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-gray-300 dark:hover:bg-slate-600 transition"
                   >
                     Delegate
                   </button>
@@ -184,8 +193,8 @@ export default function OwnerVoting() {
             </>
           ) : (
             /* Success State */
-            <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-6 text-center">
-              <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3">
+            <div className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-xl p-6 text-center transition-colors">
+              <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-3 transition-colors">
                 <svg
                   className="w-6 h-6"
                   fill="none"
@@ -200,10 +209,10 @@ export default function OwnerVoting() {
                   ></path>
                 </svg>
               </div>
-              <h3 className="text-emerald-800 font-bold text-lg mb-1">
+              <h3 className="text-emerald-800 dark:text-emerald-400 font-bold text-lg mb-1 transition-colors">
                 Vote Successfully Cast
               </h3>
-              <p className="text-emerald-600 text-sm">
+              <p className="text-emerald-600 dark:text-emerald-500 text-sm transition-colors">
                 {voteChoice === "Delegated"
                   ? "You have successfully delegated your vote."
                   : `Your coefficient weight has been legally recorded as a "${voteChoice}" vote.`}
@@ -213,36 +222,40 @@ export default function OwnerVoting() {
         </div>
 
         {/* Right Column: Real-time Stats */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-slate-800 mb-1">
+        <div className="bg-white dark:bg-[#161B26] rounded-xl shadow-sm border border-gray-200 dark:border-slate-800 p-6 transition-colors">
+          <h2 className="text-lg font-bold text-slate-800 dark:text-white mb-1 transition-colors">
             Participation
           </h2>
-          <p className="text-sm text-slate-500 mb-6">Real-time</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 transition-colors">
+            Real-time
+          </p>
 
           <div className="space-y-6">
             {/* Total Voters */}
             <div>
-              <div className="flex justify-between text-sm font-medium text-slate-800 mb-2">
+              <div className="flex justify-between text-sm font-medium text-slate-800 dark:text-slate-300 mb-2 transition-colors">
                 <span>Voters</span>
                 <span>14 / 24</span>
               </div>
-              <div className="w-full bg-gray-100 rounded-full h-2.5 mb-1">
+              <div className="w-full bg-gray-100 dark:bg-slate-800 rounded-full h-2.5 mb-1 transition-colors">
                 <div
                   className="bg-blue-600 h-2.5 rounded-full"
                   style={{ width: "58%" }}
                 ></div>
               </div>
-              <p className="text-xs text-slate-500">58% participation</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 transition-colors">
+                58% participation
+              </p>
             </div>
 
-            <div className="border-t border-gray-100 pt-6 space-y-4">
+            <div className="border-t border-gray-100 dark:border-slate-800 pt-6 space-y-4 transition-colors">
               {/* Yes Bar */}
               <div>
-                <div className="flex justify-between text-sm font-medium text-slate-800 mb-2">
+                <div className="flex justify-between text-sm font-medium text-slate-800 dark:text-slate-300 mb-2 transition-colors">
                   <span>Yes</span>
                   <span>42%</span>
                 </div>
-                <div className="w-full bg-gray-100 rounded-full h-2">
+                <div className="w-full bg-gray-100 dark:bg-slate-800 rounded-full h-2 transition-colors">
                   <div
                     className="bg-emerald-500 h-2 rounded-full"
                     style={{ width: "42%" }}
@@ -252,11 +265,11 @@ export default function OwnerVoting() {
 
               {/* No Bar */}
               <div>
-                <div className="flex justify-between text-sm font-medium text-slate-800 mb-2">
+                <div className="flex justify-between text-sm font-medium text-slate-800 dark:text-slate-300 mb-2 transition-colors">
                   <span>No</span>
                   <span>16%</span>
                 </div>
-                <div className="w-full bg-gray-100 rounded-full h-2">
+                <div className="w-full bg-gray-100 dark:bg-slate-800 rounded-full h-2 transition-colors">
                   <div
                     className="bg-rose-500 h-2 rounded-full"
                     style={{ width: "16%" }}
@@ -271,17 +284,19 @@ export default function OwnerVoting() {
       {/* VOTING HISTORY SECTION */}
       <div>
         <div className="mb-6">
-          <h2 className="text-xl font-bold text-slate-800">Voting History</h2>
-          <p className="text-slate-500 text-sm">
+          <h2 className="text-xl font-bold text-slate-800 dark:text-white transition-colors">
+            Voting History
+          </h2>
+          <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors">
             Past decisions and your recorded selections
           </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-white dark:bg-[#161B26] rounded-xl shadow-sm border border-gray-200 dark:border-slate-800 overflow-hidden transition-colors">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-gray-50 border-b border-gray-100 text-xs text-slate-500 uppercase tracking-wider">
+                <tr className="bg-gray-50 dark:bg-[#1a2130] border-b border-gray-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider transition-colors">
                   <th className="p-4 font-semibold pl-6">Motion</th>
                   <th className="p-4 font-semibold">Date Closed</th>
                   <th className="p-4 font-semibold">Final Result</th>
@@ -290,24 +305,26 @@ export default function OwnerVoting() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="text-sm text-slate-700">
+              <tbody className="text-sm text-slate-700 dark:text-slate-300">
                 {votingHistory.map((history) => (
                   <tr
                     key={history.id}
-                    className="border-b border-gray-50 hover:bg-slate-50 transition-colors"
+                    className="border-b border-gray-50 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
                   >
-                    <td className="p-4 pl-6 font-medium text-slate-800">
+                    <td className="p-4 pl-6 font-medium text-slate-800 dark:text-slate-200 transition-colors">
                       {history.title}
                     </td>
-                    <td className="p-4 text-slate-500">{history.date}</td>
+                    <td className="p-4 text-slate-500 dark:text-slate-400 transition-colors">
+                      {history.date}
+                    </td>
                     <td className="p-4">
                       <span
-                        className={`px-2.5 py-1 rounded-full text-xs font-bold ${history.statusColor}`}
+                        className={`inline-block px-2.5 py-1 rounded-full text-xs font-bold border transition-colors ${history.statusColor}`}
                       >
                         {history.result}
                       </span>
                     </td>
-                    <td className="p-4 pr-6 text-right font-medium text-slate-800">
+                    <td className="p-4 pr-6 text-right font-medium text-slate-800 dark:text-slate-200 transition-colors">
                       {history.myVote}
                     </td>
                   </tr>

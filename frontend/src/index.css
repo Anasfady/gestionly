@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Force the base HTML and Body elements to respect the theme */
+html,
+body,
+#root {
+  @apply min-h-screen transition-colors duration-300;
+}
+
+html {
+  @apply bg-gray-50 text-slate-900;
+}
+
+html.dark {
+  @apply bg-[#0B0E14] text-slate-100;
+}

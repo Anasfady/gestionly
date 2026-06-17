@@ -39,23 +39,25 @@ export default function BillingDashboard() {
   const getStatusStyle = (status: string) => {
     switch (status) {
       case "Paid":
-        return "bg-emerald-100 text-emerald-700";
+        return "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400";
       case "Pending":
-        return "bg-slate-100 text-slate-700";
+        return "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300";
       case "Overdue":
-        return "bg-rose-100 text-rose-700";
+        return "bg-rose-100 text-rose-700 dark:bg-rose-500/10 dark:text-rose-400";
       default:
-        return "bg-gray-100 text-gray-700";
+        return "bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-slate-400";
     }
   };
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="p-8 bg-gray-50 dark:bg-[#0B0E14] min-h-screen transition-colors duration-300">
       {/* Page Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">Billing</h1>
-          <p className="text-slate-500 text-sm">
+          <h1 className="text-2xl font-bold text-slate-800 dark:text-white transition-colors">
+            Billing
+          </h1>
+          <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors">
             Invoices issued to the building
           </p>
         </div>
@@ -90,8 +92,8 @@ export default function BillingDashboard() {
 
       {/* Add Invoice Form (Hidden by default) */}
       {showForm && (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-brand-200 mb-8 animate-fade-in">
-          <h2 className="text-lg font-semibold text-slate-800 mb-4">
+        <div className="bg-white dark:bg-[#161B26] p-6 rounded-xl shadow-sm border border-brand-200 dark:border-brand-800/50 mb-8 animate-fade-in transition-colors">
+          <h2 className="text-lg font-semibold text-slate-800 dark:text-white mb-4 transition-colors">
             Draft new invoice
           </h2>
 
@@ -99,10 +101,10 @@ export default function BillingDashboard() {
             {/* Left Column */}
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">
                   Target Unit *
                 </label>
-                <select className="w-full border border-gray-200 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 bg-white text-slate-700">
+                <select className="w-full border border-gray-200 dark:border-slate-700 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 dark:focus:border-brand-500 bg-white dark:bg-[#0B0E14] text-slate-700 dark:text-white transition-colors">
                   <option value="" disabled selected>
                     Select a unit
                   </option>
@@ -115,24 +117,24 @@ export default function BillingDashboard() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">
                   Concept / Description *
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. Monthly maintenance fee"
-                  className="w-full border border-gray-200 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 text-slate-800"
+                  className="w-full border border-gray-200 dark:border-slate-700 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 dark:focus:border-brand-500 bg-white dark:bg-[#0B0E14] text-slate-800 dark:text-white transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">
                   Amount (€) *
                 </label>
                 <input
                   type="number"
                   placeholder="0.00"
-                  className="w-full border border-gray-200 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 text-slate-800"
+                  className="w-full border border-gray-200 dark:border-slate-700 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 dark:focus:border-brand-500 bg-white dark:bg-[#0B0E14] text-slate-800 dark:text-white transition-colors"
                 />
               </div>
             </div>
@@ -141,30 +143,30 @@ export default function BillingDashboard() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">
                     Issue Date
                   </label>
                   <input
                     type="date"
-                    className="w-full border border-gray-200 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 text-slate-700"
+                    className="w-full border border-gray-200 dark:border-slate-700 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 dark:focus:border-brand-500 bg-white dark:bg-[#0B0E14] text-slate-700 dark:text-white transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">
                     Due Date
                   </label>
                   <input
                     type="date"
-                    className="w-full border border-gray-200 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 text-slate-700"
+                    className="w-full border border-gray-200 dark:border-slate-700 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 dark:focus:border-brand-500 bg-white dark:bg-[#0B0E14] text-slate-700 dark:text-white transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">
                   Initial Status
                 </label>
-                <select className="w-full border border-gray-200 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 bg-white text-slate-700">
+                <select className="w-full border border-gray-200 dark:border-slate-700 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 dark:focus:border-brand-500 bg-white dark:bg-[#0B0E14] text-slate-700 dark:text-white transition-colors">
                   <option>Pending</option>
                   <option>Paid</option>
                   <option>Overdue</option>
@@ -172,23 +174,23 @@ export default function BillingDashboard() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">
                   Additional Notes
                 </label>
                 <textarea
                   rows={2}
                   placeholder="Optional notes for the owner..."
-                  className="w-full border border-gray-200 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 text-slate-800"
+                  className="w-full border border-gray-200 dark:border-slate-700 rounded-lg p-2.5 text-sm outline-none focus:border-brand-500 dark:focus:border-brand-500 bg-white dark:bg-[#0B0E14] text-slate-800 dark:text-white transition-colors"
                 ></textarea>
               </div>
             </div>
           </div>
 
           {/* Form Actions */}
-          <div className="flex justify-end space-x-3 mt-6 pt-4 border-t border-gray-100">
+          <div className="flex justify-end space-x-3 mt-6 pt-4 border-t border-gray-100 dark:border-slate-800 transition-colors">
             <button
               onClick={() => setShowForm(false)}
-              className="px-5 py-2.5 rounded-lg text-sm font-medium text-slate-600 bg-gray-100 hover:bg-gray-200 transition"
+              className="px-5 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 transition"
             >
               Cancel
             </button>
@@ -216,18 +218,18 @@ export default function BillingDashboard() {
         Only show the Table if the Form is CLOSED (!showForm) 
       */}
       {!showForm && (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden animate-fade-in">
-          <div className="p-6 border-b border-gray-50 flex justify-between items-center">
+        <div className="bg-white dark:bg-[#161B26] rounded-xl shadow-sm border border-gray-100 dark:border-slate-800 overflow-hidden animate-fade-in transition-colors">
+          <div className="p-6 border-b border-gray-50 dark:border-slate-800/80 flex justify-between items-center transition-colors">
             <div>
-              <h2 className="text-lg font-semibold text-slate-800">
+              <h2 className="text-lg font-semibold text-slate-800 dark:text-white transition-colors">
                 Invoices · November
               </h2>
-              <p className="text-slate-500 text-sm">
+              <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors">
                 24 issued · €18,420 collected
               </p>
             </div>
             {/* Small filter dropdown placeholder */}
-            <select className="border border-gray-200 rounded-lg p-2 text-sm outline-none bg-gray-50 text-slate-600">
+            <select className="border border-gray-200 dark:border-slate-700 rounded-lg p-2 text-sm outline-none bg-gray-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
               <option>All Statuses</option>
               <option>Pending</option>
               <option>Paid</option>
@@ -238,7 +240,7 @@ export default function BillingDashboard() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-gray-50 border-b border-gray-100 text-sm text-slate-500">
+                <tr className="bg-gray-50 dark:bg-[#1a2130] border-b border-gray-100 dark:border-slate-800 text-sm text-slate-500 dark:text-slate-400 transition-colors">
                   <th className="p-4 font-medium pl-6">Invoice</th>
                   <th className="p-4 font-medium">Unit</th>
                   <th className="p-4 font-medium">Concept</th>
@@ -247,21 +249,27 @@ export default function BillingDashboard() {
                   <th className="p-4 font-medium text-right pr-6">Action</th>
                 </tr>
               </thead>
-              <tbody className="text-sm text-slate-700">
+              <tbody className="text-sm text-slate-700 dark:text-slate-300">
                 {invoices.map((invoice) => (
                   <tr
                     key={invoice.id}
-                    className="border-b border-gray-50 hover:bg-slate-50 transition-colors"
+                    className="border-b border-gray-50 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
                   >
-                    <td className="p-4 pl-6 font-mono text-slate-600 text-xs">
+                    <td className="p-4 pl-6 font-mono text-slate-600 dark:text-slate-400 text-xs">
                       {invoice.id}
                     </td>
-                    <td className="p-4 font-medium">{invoice.unit}</td>
-                    <td className="p-4 text-slate-500">{invoice.concept}</td>
-                    <td className="p-4 font-medium">{invoice.amount}</td>
+                    <td className="p-4 font-medium text-slate-800 dark:text-slate-200">
+                      {invoice.unit}
+                    </td>
+                    <td className="p-4 text-slate-500 dark:text-slate-400">
+                      {invoice.concept}
+                    </td>
+                    <td className="p-4 font-medium text-slate-800 dark:text-slate-200">
+                      {invoice.amount}
+                    </td>
                     <td className="p-4">
                       <span
-                        className={`px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${getStatusStyle(
+                        className={`px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider transition-colors ${getStatusStyle(
                           invoice.status,
                         )}`}
                       >
@@ -270,7 +278,7 @@ export default function BillingDashboard() {
                     </td>
                     <td className="p-4 pr-6 text-right">
                       <button
-                        className="text-slate-400 hover:text-brand-500 transition"
+                        className="text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 transition-colors"
                         title="Download PDF"
                       >
                         <svg
