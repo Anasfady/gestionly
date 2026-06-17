@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function TopDebtors() {
   // Array of debtor objects to map over
   const debtors = [
