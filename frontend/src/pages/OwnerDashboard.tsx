@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export default function OwnerDashboard() {
   return (
     <div className="p-8 bg-gray-50 dark:bg-[#0B0E14] min-h-screen transition-colors duration-300">
