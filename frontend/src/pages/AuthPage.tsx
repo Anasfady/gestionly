@@ -12,15 +12,18 @@ export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   // Multi-step Wizard State for President Onboarding
-  const [signupStep, setSignupStep] = useState(1);
+  const [signupStep, setSignupStep] = useState<number>(1);
 
   const handleToggleMode = (toLogin: boolean) => {
     setIsLogin(toLogin);
     setSignupStep(1); // Reset wizard if they switch back to login
   };
 
-  const handleNextStep = () => setSignupStep((prev) => Math.min(prev + 1, 3));
-  const handlePrevStep = () => setSignupStep((prev) => Math.max(prev - 1, 1));
+  // FIXED: Explicitly typed (prev: number) to satisfy strict TypeScript rules
+  const handleNextStep = () =>
+    setSignupStep((prev: number) => Math.min(prev + 1, 3));
+  const handlePrevStep = () =>
+    setSignupStep((prev: number) => Math.max(prev - 1, 1));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

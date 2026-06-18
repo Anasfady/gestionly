@@ -1,6 +1,7 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useTheme } from "../contexts/ThemeContext";
+import { useState } from "react";
 
 export default function DashboardLayout() {
   const location = useLocation();
